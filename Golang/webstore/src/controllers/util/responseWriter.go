@@ -38,7 +38,8 @@ func (this closeableResponseWriter) Close() {
 }
 
 func GetResponseWriter(w http.ResponseWriter, req *http.Request) CloseableResponseWriter{
-	if strings.Contains(req.Header.Get("Accept-Encoing"), "gzip") {
+	// 如果请求包含gzip压缩而解压
+	if strings.Contains(req.Header.Get("Accept-Encoding"), "gzip") {
 		w.Header().Set("Content-Encoding", "gzip")
 		gRW := gzipResponseWriter{
 			ResponseWriter: w,

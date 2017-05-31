@@ -2,7 +2,6 @@ package controllers
 
 import (
 	"bufio"
-	"fmt"
 	"github.com/gorilla/mux"
 	"net/http"
 	"os"
@@ -13,6 +12,7 @@ import (
 func Register(templates *template.Template) {
 	router := mux.NewRouter()
 
+	// 控制器注册
 	hc := new(homeController)
 	hc.template = templates.Lookup("home.html")
 	hc.loginTemplate = templates.Lookup("login.html")
@@ -41,6 +41,8 @@ func Register(templates *template.Template) {
 	router.HandleFunc("/api/stand_locator", standLocatorCtrl.apiSearch)
 
 	http.Handle("/", router)
+
+	// 静态文件的读取
 	http.HandleFunc("/img/", serveResource)
 	http.HandleFunc("/css/", serveResource)
 
@@ -58,7 +60,6 @@ func serveResource(w http.ResponseWriter, req *http.Request) {
 	} else {
 		contentType = "text/plain"
 	}
-	fmt.Println(path)
 	f, err := os.Open(path)
 
 	if err == nil {

@@ -14,7 +14,7 @@ func (this *Category) ImageUrl() string {
 
 func (this *Category) Title() string {
 	return this.title
-}
+n}
 
 func (this *Category) Description() string {
 	return this.description

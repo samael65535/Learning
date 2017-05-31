@@ -9,8 +9,8 @@ import (
 
 func main() {
 
-	templates := populateTemplates()
-	controllers.Register(templates)
+	templates := populateTemplates() // 缓存相关的模板
+	controllers.Register(templates)  // 路由对应的处理函数的注册
 
 	http.ListenAndServe(":8989", nil)
 }

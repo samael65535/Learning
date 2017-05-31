@@ -33,6 +33,7 @@ func (this *homeController) login(w http.ResponseWriter, req *http.Request) {
 		password := req.FormValue("password")
 		member, err := models.GetMember(email, password)
 		if err == nil {
+			// 如果数据库存在用户则创建cookie并存入数据库
 			session, err := models.CreateSession(member)
 			if err == nil {
 				var cookie http.Cookie
